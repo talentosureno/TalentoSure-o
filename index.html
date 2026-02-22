@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talento Sureño</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    color:white;
+    text-align:center;
+    background:url('https://i.postimg.cc/DzJ62nbH/1771264519264_edit_721223095467987.jpg') no-repeat center center fixed;
+    background-size:cover;
+    transition:background-image 1.5s ease-in-out;
+}
+
+/* HEADER */
+header{
+    padding:40px 20px;
+    position:relative;
+}
+
+.logo{
+    width:280px;
+    max-width:90%;
+}
+
+/* MENÚ */
+.menu-icon{
+    position:absolute;
+    top:20px;
+    left:20px;
+    width:30px;
+    height:25px;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.menu-icon div{
+    height:4px;
+    background:#00c3ff;
+    border-radius:2px;
+}
+
+.menu{
+    position:absolute;
+    top:60px;
+    left:20px;
+    background:rgba(0,0,0,0.95);
+    border:2px solid #00c3ff;
+    border-radius:8px;
+    display:flex;
+    flex-direction:column;
+    width:180px;
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+}
+
+.menu.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.menu a{
+    color:#00c3ff;
+    text-decoration:none;
+    padding:12px;
+    border-bottom:1px solid #00c3ff;
+    font-weight:bold;
+}
+
+.menu a:last-child{
+    border-bottom:none;
+}
+
+.section{
+    padding:30px 20px;
+}
+
+/* VIDEOS */
+.video-container{
+    width:90%;
+    max-width:900px;
+    margin:30px auto;
+    border:4px solid #00c3ff;
+    border-radius:15px;
+    overflow:hidden;
+    background:black;
+    aspect-ratio:16/9;
+    box-shadow:0 0 25px rgba(0,195,255,0.7);
+}
+
+.video-container iframe{
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+/* BOTÓN */
+.btn{
+    display:inline-block;
+    margin:20px;
+    padding:15px 30px;
+    background:#00c3ff;
+    color:black;
+    font-weight:bold;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.3s;
+    font-size:18px;
+}
+
+.btn:hover{
+    background:white;
+    color:#00c3ff;
+}
+
+.hidden{
+    display:none;
+}
+
+/* CARD */
+.card{
+    background:rgba(0,0,0,0.85);
+    border:2px solid #00c3ff;
+    border-radius:20px;
+    padding:30px;
+    margin:50px auto;
+    width:90%;
+    max-width:800px;
+    font-size:18px;
+}
+
+footer{
+    padding:15px;
+    background:rgba(0,0,0,0.6);
+}
+
+/* ========================= */
+/* 📱 VERSIÓN CELULAR */
+/* ========================= */
+
+@media(max-width:768px){
+
+.logo{
+    width:200px;
+}
+
+.card{
+    font-size:15px;
+    padding:20px;
+}
+
+.btn{
+    width:80%;
+    font-size:16px;
+}
+
+.video-container{
+    width:100%;
+    border-width:3px;
+}
+
+}
+
+/* ========================= */
+/* 💻 VERSIÓN COMPUTADORA */
+/* ========================= */
+
+@media(min-width:1024px){
+
+header{
+    padding:60px 20px;
+}
+
+.logo{
+    width:350px;
+}
+
+.section{
+    padding:60px 20px;
+}
+
+.card{
+    font-size:20px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="menu-icon" onclick="toggleMenu()">
+<div></div>
+<div></div>
+<div></div>
+</div>
+
+<div class="menu" id="menu">
+<a href="#">Inicio</a>
+<a href="#">Videos</a>
+</div>
+
+<img src="https://i.postimg.cc/zGX52PRX/1771262355741.png" class="logo">
+<p>Impulsando el talento del sur con pasión y estilo 🎶</p>
+</header>
+
+<div class="section">
+
+<div class="video-container">
+<iframe 
+src="https://player.vimeo.com/video/1165470561"
+allow="autoplay; fullscreen; picture-in-picture"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="btn" onclick="toggleVideos()" id="toggleBtn">
+Ver Más Videos
+</div>
+
+<div class="video-container hidden" id="extraVideo">
+<iframe 
+src="https://player.vimeo.com/video/1165727434"
+allow="autoplay; fullscreen; picture-in-picture"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="card">
+<h2>🌟 Sobre Nosotros</h2>
+<p>
+Talento Sureño es una plataforma dedicada a promover artistas, músicos,
+bailarines y creadores del sur. Apoyamos el talento local y lo llevamos
+al siguiente nivel con pasión, estilo y fuerza cultural.
+</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 Talento Sureño - Todos los derechos reservados
+</footer>
+
+<script>
+
+// Fondo rotativo
+const backgrounds=[
+'https://i.postimg.cc/DzJ62nbH/1771264519264_edit_721223095467987.jpg',
+'https://i.postimg.cc/pdFfwCwt/1771264594368.jpg'
+];
+
+let index=0;
+setInterval(()=>{
+index=(index+1)%backgrounds.length;
+document.body.style.backgroundImage=`url('${backgrounds[index]}')`;
+},5000);
+
+// Menú
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+const menu=document.getElementById("menu");
+const icon=document.querySelector(".menu-icon");
+if(!menu.contains(e.target) && !icon.contains(e.target)){
+menu.classList.remove("show");
+}
+});
+
+// Mostrar/Ocultar video
+function toggleVideos(){
+let video=document.getElementById("extraVideo");
+let btn=document.getElementById("toggleBtn");
+
+video.classList.toggle("hidden");
+btn.innerText = video.classList.contains("hidden")
+? "Ver Más Videos"
+: "Ocultar Videos";
+}
+
+</script>
+
+</body>
+</html>
